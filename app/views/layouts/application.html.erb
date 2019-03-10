@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>B2b</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,500,700" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= favicon_link_tag 'robot.svg'%>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+  <%= render "admin/navigation" %>
+
+  <div id="main-container" class="container expanded">
+    <%= render 'admin/flash_helper' %>
+    <%= yield %>
+  </div>
+
+  </body>
+</html>

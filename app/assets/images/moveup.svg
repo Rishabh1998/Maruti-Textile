@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 6</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-72.000000, -47.000000)">
+        <g id="Group-6" transform="translate(73.000000, 48.000000)">
+            <path d="M8.85416667,16.6458333 L8.85416667,4.60416667" id="Shape" stroke="#7B7B7B" stroke-linecap="round" stroke-linejoin="round"></path>
+            <polyline id="Shape" stroke="#7B7B7B" stroke-linecap="round" stroke-linejoin="round" points="6.02083333 7.4375 8.85416667 4.60416667 11.6875 7.4375"></polyline>
+            <path d="M16.6458333,0.354166667 L0.354166667,0.354166667" id="Shape" stroke="#7B7B7B" stroke-linecap="round" stroke-linejoin="round"></path>
+            <rect id="Rectangle-path" x="0" y="0" width="17" height="17"></rect>
+        </g>
+    </g>
+</svg>

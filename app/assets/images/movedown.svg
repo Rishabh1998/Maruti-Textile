@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 7</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-98.000000, -47.000000)">
+        <g id="Group-7" transform="translate(99.000000, 48.000000)">
+            <path d="M8.85416667,12.3958333 L8.85416667,0.354166667" id="Shape" stroke="#7B7B7B" stroke-linecap="round" stroke-linejoin="round" transform="translate(9.208333, 6.375000) scale(1, -1) translate(-9.208333, -6.375000) "></path>
+            <polyline id="Shape" stroke="#7B7B7B" stroke-linecap="round" stroke-linejoin="round" transform="translate(8.854167, 10.979167) scale(1, -1) translate(-8.854167, -10.979167) " points="6.02083333 12.3958333 8.85416667 9.5625 11.6875 12.3958333"></polyline>
+            <path d="M16.6458333,15.9375 L0.354166667,15.9375" id="Shape" stroke="#7B7B7B" stroke-linecap="round" stroke-linejoin="round" transform="translate(8.500000, 16.291667) scale(1, -1) translate(-8.500000, -16.291667) "></path>
+            <rect id="Rectangle-path" transform="translate(8.500000, 8.500000) scale(1, -1) translate(-8.500000, -8.500000) " x="0" y="0" width="17" height="17"></rect>
+        </g>
+    </g>
+</svg>

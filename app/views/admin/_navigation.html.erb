@@ -1,0 +1,166 @@
+<% if true %>
+  <div id="nav-container" class="hide">
+    <nav id="nav" class="navbar navbar-inverse sidebar expanded" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="logo-container" id="home-button">
+          <span class="logo">
+                <a href="/admin"><span class="starfleet-icon"></span></a>
+          </span>
+            <span class="nav-heading"> <a href="/admin"> B2B </a> </span>
+          </div>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-body">
+            <%
+              headers = [
+                  {
+                      text: "Catelouge",
+                      icon: "catalogue-icon",
+                      dropdown: true,
+                      options: [
+                          {
+                              text: "Divisions",
+                              path: "/admin/grocery_divisions",
+                          },
+                          {
+                              text: "Sections",
+                              path: "/admin/grocery_sections",
+                          },
+                          {
+                              text: "Department",
+                              path: "/admin/grocery_departments",
+                          },
+                          {
+                              text: "Items",
+                              path: "/admin/grocery_items",
+                          }
+                      ]
+                  },
+                  {
+                      text: "Offers",
+                      icon: "reports-icon",
+                      path: "/admin/grocery_offers"
+                  },
+                  {
+                      text: "Orders",
+                      icon: "reports-icon",
+                      path: "/admin/orders"
+                  },
+                  {
+                      text: "Admin",
+                      icon: "admin-icon",
+                      dropdown: true,
+                      permission: "can_view_admin_users",
+                      options: [
+                          {
+                              text: "Users",
+                              path: "/admin/users"
+                          },
+                          {
+                              text: "Roles",
+                              path: "/admin/roles"
+                          },
+                          {
+                              text: "Permissions",
+                              path: "/admin/permissions"
+                          }
+                      ]
+                  },
+                  {
+                      text: "Logout",
+                      icon: "logout-icon",
+                      path: "/admin/sessions/logout"
+                  }
+              ]
+            %>
+            <% if @current_user.present?%>
+              <% headers.each do |header| %>
+                <li>
+                  <% if header[:dropdown] %>
+                    <% if !@current_user.present?  || header[:permission].blank? || ( @current_user.method(
+                        header[:permission].last == "?" ? header[:permission] : "#{header[:permission]}?").call )
+                    %>
+                      <div class="nav-option pointer nav-option-dropdown dit">
+                        <div class="nav-icon">
+                          <span class="<%= header[:icon] %>"></span>
+                        </div>
+                        <div class="nav-content dropdown-toggle" data-toggle="dropdown"> <%= header[:text] %> </div>
+                        <ul class="dropdown-menu forAnimate" role="menu">
+                          <% header[:options].each do |option| %>
+                            <%if option[:style]%>
+                              <li>
+                                <span class="bold-header-text"><%= option[:text] %></span>
+                              </li>
+                            <%else%>
+                              <% if !@current_user.present?  || option[:permission].blank? || ( @current_user.method(
+                                  option[:permission].last == "?" ? option[:permission] : "#{option[:permission]}?").call )
+                              %>
+                                <li class="nav-dropdown-option">
+                                  <a class="nav-dropdown-text <%="bold-header-text" if option[:style]%>" href="<%= option[:path] %>"><%= option[:text] %></a>
+                                </li>
+                              <% end %>
+                            <%end%>
+                          <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
+                  <% else %>
+                    <% if header[:permission].blank? || ( @current_user.method(
+                        header[:permission].last == "?" ? header[:permission] : "#{header[:permission]}?").call )
+                    %>
+                      <div class="nav-option pointer nav-option-text">
+                        <div class="nav-icon">
+                          <a href="<%= header[:path]%>"><span class="<%= header[:icon] %>"></span></a>
+                        </div>
+                        <div class="nav-content" >
+                          <a href="<%= header[:path]%>"><%= header[:text] %></a>
+                        </div>
+                        <div class="nav-tooltip">
+                          <span><%= header[:text] %></span>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </li>
+              <% end %>
+              </ul>
+            <% end %>
+
+            <ul class="nav navbar-nav navbar-toggle-body">
+
+              <li id="expand-btn" class="hide toggle-nav">
+                <div class="pointer">
+              <span class="nav-icon">
+                    <span class="expand-nav-icon"></span>
+              </span>
+                </div>
+              </li>
+
+              <li id="collapse-btn" class="toggle-nav">
+                <div class="pointer pull-right">
+              <span class="nav-icon">
+                    <span class="collapse-nav-icon"></span>
+              </span>
+                </div>
+              </li>
+            </ul>
+            </div>
+      </div>
+    </nav>
+  </div>
+<% else %>
+  <script type="application/javascript">
+      $(function(){
+          $('#main-container').removeClass('expanded').addClass('collapsed');
+      });
+  </script>
+<% end %>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22">
+    <defs>
+        <path id="a" d="M.5.5l10 10"/>
+        <path id="b" d="M.5.5l10 10"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" stroke="#7B7B7B">
+        <g stroke-linecap="round">
+            <g transform="rotate(45 1.768 14.51)">
+                <use xlink:href="#a"/>
+                <use xlink:href="#a"/>
+            </g>
+            <g transform="scale(-1 1) rotate(-45 3.732 27.789)">
+                <use xlink:href="#b"/>
+                <use xlink:href="#b"/>
+            </g>
+        </g>
+        <circle cx="11" cy="11" r="9"/>
+    </g>
+</svg>
