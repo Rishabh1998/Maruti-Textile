@@ -1,0 +1,21 @@
+<div class="form-group col-md-6">
+  <%= f.label :name, 'Name' %>
+  <%= f.text_field :name, class: 'form-control' %>
+</div>
+
+<div class="form-group col-md-6">
+  <%= f.label :description, 'Description' %>
+  <%= f.text_area :description, class: 'form-control' %>
+</div>
+
+<div class="form-group col-md-6">
+  <%= f.label :admin_only, 'Admin Only' %> <small>(These roles can only be assigned to Admins.)</small>
+  <%= f.check_box :admin_only, class: 'form-control' %>
+</div>
+
+<div class="form-group col-md-12">
+  <%= f.label :permission_ids, 'Permissions' %>
+  <%= f.select :permission_ids, permissions_for_select, {}, class: 'form-control', 'data-behavior' => "chosen-select",  multiple: true %>
+</div>
+
+<%= javascript_include_tag 'roles/form' %>

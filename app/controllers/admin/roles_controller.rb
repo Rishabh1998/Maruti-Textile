@@ -38,8 +38,8 @@ class Admin::RolesController < ApiController
   end
 
   private
-  def permitted_params
-    params.require(:role).permit(:name, :description, :active, :admin_only, permission_ids: [])
-  end
+    def permitted_params
+      params.require(:role).permit(:name, :description, :active, :admin_only, permission_ids: [])
+    end
 end
 

@@ -1,4 +1,4 @@
-class Admin::PermissionsController < ApplicationController
+class Admin::PermissionsController < ApiController
   before_action :authenticate_user
   before_action :only_allow_super_admin
 

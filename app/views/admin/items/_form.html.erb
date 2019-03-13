@@ -1,0 +1,53 @@
+<div class="col-xs-6 mt10">
+  <%= f.label :division_id, 'Division' %>
+  <%= f.select :division_id, Division.all.pluck(:name, :id), {include_blank: "--Division--"},
+               { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true} %>
+</div>
+<div class="col-xs-6 mt10">
+  <%= f.label :section_id, 'Section' %>
+  <%= f.select :section_id, Section.all.pluck(:name, :id), {include_blank: "--Section--"},
+               { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%>
+</div>
+<div class="col-xs-6 mt10">
+  <%= f.label :department_id, 'Department' %>
+  <%= f.select :department_id, Department.all.pluck(:name, :id), {include_blank: "--Department--"},
+               { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%>
+</div>
+<div class="col-xs-6 mt10">
+  <%= f.label :category, 'Category' %>
+  <%= f.text_field :category, class: 'form-control input feedr-main-input', required: true  %>
+</div>
+<div class="col-xs-6 mt10">
+  <%= f.label :company_name, 'Company Name' %>
+  <%= f.text_field :company_name, class: 'form-control input feedr-main-input', required: true  %>
+</div>
+<div class="col-xs-6 mt10">
+  <%= f.label :name, 'Name' %>
+  <%= f.text_field :name, class: 'form-control input feedr-main-input', required: true  %>
+</div>
+<div class="col-xs-6 mt10">
+  <%= f.label :mrp, 'MRP' %>
+  <%= f.text_field :mrp, class: 'form-control input feedr-main-input', required: true  %>
+</div>
+<div class="col-xs-6 mt10">
+  <%= f.label :discount, 'Discount' %>
+  <%= f.text_field :discount, class: 'form-control input feedr-main-input', required: true  %>
+</div>
+<div class="col-xs-6 mt10">
+  <%= f.label :rsp, 'RSP' %>
+  <%= f.text_field :rsp, class: 'form-control input feedr-main-input', required: true  %>
+</div>
+<div class="col-xs-6 mt10">
+  <%= f.label :barcode, 'Barcode' %>
+  <%= f.text_field :barcode, class: 'form-control input feedr-main-input', required: true  %>
+</div>
+<div class="col-xs-6 mt10">
+  <%= f.label :item_code, 'Item Code' %>
+  <%= f.text_field :item_code, class: 'form-control input feedr-main-input', required: true  %>
+</div>
+
+<div class="col-xs-6 mt10">
+  <%= f.label :status, 'Status' %>
+  <%= f.select :status, ['active', 'inactive'], {},
+               { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%>
+</div>

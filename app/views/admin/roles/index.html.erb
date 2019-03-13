@@ -1,0 +1,61 @@
+<div class="container-div">
+  <div class="col-xs-12">
+    <div class="col-md-1" >
+      <h3>
+        <%= link_to new_admin_role_path, class: "btn btn-sm btn-green" do %>
+          <span class="fa fa-plus" aria-hidden="true"></span> Add Role
+        <% end %>
+      </h3>
+    </div>
+    <div class="col-md-10" align="center">
+      <h3>User Roles</h3>
+    </div>
+  </div>
+
+  <div id="message-container" class="row errors"></div>
+
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <table class="table table-bordered table-striped table-hover table-data table-overview display">
+          <colgroup>
+            <col class="col-xs-2">
+            <col class="col-xs-2">
+            <col class="col-xs-4">
+            <col class="col-xs-1">
+            <col class="col-xs-3">
+          </colgroup>
+          <thead>
+          <tr>
+            <th>Role</th>
+            <th>Description</th>
+            <th>Permissions</th>
+            <th>Admin Only</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+            <% @roles.each do |role| %>
+              <tr>
+                <td><%= role.name %></td>
+                <td><%= role.description %></td>
+                <td>
+                  <ul>
+                    <% role.permissions.each do |permission| %>
+                        <li><%= permission.name %></li>
+                    <% end %>
+                  </ul>
+                </td>
+                <td><%= role.admin_only %></td>
+                <td class="align-right action-buttons">
+                  <%= link_to "Edit", edit_admin_role_path(role), class: 'btn btn-blue btn-sm' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= will_paginate @roles, params: params.to_unsafe_h %>
+      </div>
+    </div>
+  </div>
+</div>

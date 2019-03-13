@@ -1,0 +1,56 @@
+<div class="container-div page-body">
+  <div>
+    <div class="col-xs-12" align="center">
+      <h3> departments</h3>
+    </div>
+    <div class="col-xs-12 no-left-pad">
+      <div class="col-md-2 col-md-offset-2">
+        <h3>
+          <%= link_to admin_departments_path, class: "btn btn-blue" do %>
+             Back
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class="table table-bordered table-striped" >
+      <thead>
+      <tr>
+        <th class="col-xs-1">Id</th>
+        <th class="col-xs-6">Name</th>
+        <th class="col-xs-2">Status</th>
+        <th class="col-xs-3">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td></td>
+        <%= form_for @department, url: admin_departments_path do |f| %>
+          <td><%= f.text_field :name, class: 'form-control input feedr-main-input', required: true %></td>
+          <td>
+            <%= f.select :status, ['active', 'inactive'], {include_blank: "Status"},
+                         { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%>
+          </td>
+          <td>
+            <%= f.submit "Save", class: 'btn btn-green' %>
+          </td>
+        <% end %>
+      </tr>
+      <% Department.all.each do |department| %>
+        <tr>
+          <td><%= department.id%></td>
+          <td><%= department.name%></td>
+          <td><%=department.status %></td>
+          <td>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="page_links ppl">
+      <%#= will_paginate @locations%>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container-div">
+  <div class="col-xs-12">
+    <div align="center">
+      <h3>Permissions</h3>
+    </div>  
+  </div>
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <table class="table table-bordered table-striped table-hover table-data table-overview display">
+          <colgroup>
+            <col class="col-xs-4">
+            <col class="col-xs-4">
+            <col class="col-xs-4">
+          </colgroup>
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+            <% @permissions.each do |permission| %>
+              <tr>
+                <td><%= permission.name %></td>
+                <td><%= permission.code %></td>
+                <td><%= permission.description %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

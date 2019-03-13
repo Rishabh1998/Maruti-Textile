@@ -1,4 +1,4 @@
-class Admin::SessionsController < ApplicationController
+class Admin::SessionsController < ApiController
   before_action :authenticate_user, :only => [:logout]
   before_action :save_login_state, :only => [:login, :login_attempt]
 
