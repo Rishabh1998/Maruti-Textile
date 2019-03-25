@@ -17,52 +17,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :customer_accounts do
-    end
-
-    resources :orders
     resources :roles
     resources :permissions
-
-    resources :divisions do
-      collection do
-        post :upload_division_image
-      end
-    end
-
-    resources :sections do
-      collection do
-        post :upload_section_image
-      end
-    end
-
-    resources :departments do
-      collection do
-        post :upload_department_image
-      end
-    end
-
-    resources :items do
-      collection do
-        post :upload_item_image
-      end
-    end
-
-    resources :offers do
-      collection do
-        post :upload_offer_image
-      end
-    end
-
-    resources :parties do
-    end
-
-    resources :colors do
-    end
-
-    resources :types do
-    end
-
+    resources :parties
+    resources :colors
+    resources :types
     resources :plastic_scraps
     resources :fillers
     resources :bobins
