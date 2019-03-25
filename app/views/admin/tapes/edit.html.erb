@@ -42,7 +42,6 @@
               </td>
             <% end %>
           <% else %>
-            <td><%= tape.id%></td>
             <td><%= Party.find_by(:id => tape.party_id).name %></td>
             <td><%= tape.type_name%></td>
             <td><%= tape.quantity%></td>

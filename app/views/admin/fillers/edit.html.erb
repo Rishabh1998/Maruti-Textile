@@ -43,7 +43,6 @@
               </td>
             <% end %>
           <% else %>
-            <td><%= filler.id%></td>
             <td><%= Party.find_by(:id => filler.party_id).name %></td>
             <td><%= Color.find_by(:id => filler.color_id).name %></td>
             <td><%= filler.quantity%></td>

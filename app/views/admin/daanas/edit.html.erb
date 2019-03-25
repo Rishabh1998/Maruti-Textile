@@ -43,7 +43,6 @@
               </td>
             <% end %>
           <% else %>
-            <td><%= daana.id%></td>
             <td><%= Party.find_by(:id => daana.party_id).name %></td>
             <td><%= Type.find_by(:id => daana.type_id).name %></td>
             <td><%= daana.quantity%></td>

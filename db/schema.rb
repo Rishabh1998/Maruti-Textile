@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_23_125813) do
+ActiveRecord::Schema.define(version: 2019_03_25_160402) do
 
   create_table "bobins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "party_id"
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(version: 2019_03_23_125813) do
     t.float "bhiwani_weight"
     t.float "bags_quantity"
     t.string "bardana"
-    t.string "labour"
+    t.integer "labour"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["party_id"], name: "index_plastic_scraps_on_party_id"
@@ -186,7 +186,7 @@ ActiveRecord::Schema.define(version: 2019_03_23_125813) do
 
   create_table "tapes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "party_id"
-    t.string "type"
+    t.string "type_name"
     t.float "rate"
     t.float "quantity"
     t.datetime "created_at", null: false

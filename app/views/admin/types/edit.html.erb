@@ -40,7 +40,6 @@
               </td>
             <% end %>
           <% else %>
-            <td><%= type.id%></td>
             <td><%= Color.find_by(:id => type.color_id).name %></td>
             <td><%= type.name%></td>
             <td><%= type.description%></td>

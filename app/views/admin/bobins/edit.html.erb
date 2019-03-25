@@ -40,7 +40,6 @@
               </td>
             <% end %>
           <% else %>
-            <td><%= bobin.id%></td>
             <td><%= Party.find_by(:id => bobin.party_id).name %></td>
             <td><%= bobin.quantity%></td>
             <td><%= bobin.rate%></td>
