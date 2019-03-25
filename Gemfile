@@ -32,7 +32,7 @@ gem 'ransack'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'will_paginate',                     github: 'jonatack/will_paginate'
-gem 'aws-sdk',                          '>= 2.3.14'
+#gem 'aws-sdk',                          '>= 2.3.14'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
