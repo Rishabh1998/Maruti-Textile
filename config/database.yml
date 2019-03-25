@@ -6,7 +6,7 @@ default: &default
 
 development:
   <<: *default
-  database: b2b
+  database: maruti
   host: localhost
   username: root
   password: password

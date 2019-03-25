@@ -1,0 +1,59 @@
+<div class="container-div page-body">
+  <div>
+    <div class="col-xs-12" align="center">
+      <h3>Types</h3>
+    </div>
+    <div class="col-xs-12 no-left-pad">
+      <div class="col-md-2 col-md-offset-2 ">
+        <h3>
+          <%= link_to new_admin_type_path, class: "btn btn-green" do %>
+            Add
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class="table table-bordered table-striped feedr-main-tabl" >
+      <thead>
+      <tr>
+        <th class="col-xs-1">Id</th>
+        <th class="col-xs-1">Color</th>
+        <th class="col-xs-4">Name</th>
+        <th class="col-xs-5">Description</th>
+        <th class="col-xs-1">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @types.each do |type| %>
+        <tr>
+          <td><%= type.id%></td>
+          <td><%= Color.find_by(:id => type.color_id).name %></td>
+          <td><%= type.name%></td>
+          <td><%= type.description%></td>
+          <td>
+            <div>
+              <div class="col-xs-4">
+                <%= link_to edit_admin_type_path(type), class: "btn btn-sm btn-blue" do %>
+                  Edit
+                <% end %>
+              </div>
+
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="page_links ppl">
+      <%= will_paginate @types%>
+    </div>
+  </div>
+</div>
+
+<script>
+    $('#document').change(function(){
+        $('#upload_form').submit()
+    });
+</script>

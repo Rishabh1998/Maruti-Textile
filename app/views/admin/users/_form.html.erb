@@ -1,0 +1,35 @@
+<div class="form-group col-md-6">
+  <%= f.label :name, 'Name' %>
+  <%= f.text_field :name, class: 'form-control input feedr-main-input', required: true %>
+
+</div>
+
+<div class="form-group col-md-6">
+  <%= f.label :email, 'Email' %>
+  <%= f.text_field :email, class: 'form-control input feedr-main-input', required: true  %>
+</div>
+
+  <div class="form-group col-md-6">
+    <%= f.label :password, 'Password' %>
+    <%= f.text_field :password,value: nil, class: 'form-control input feedr-main-input', required: form_type !='edit',placeholder:"Adding password here will update current password" %>
+  </div>
+
+
+<div class="form-group col-md-6">
+  <%= f.label :status, 'Status' %>
+  <%= f.select :status, ['active', 'inactive'], {},
+               { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select"} %>
+</div>
+
+<div class="form-group col-md-6">
+  <%= f.label :user_type, 'User Type' %>
+  <%= f.select :user_type, ['admin', 'normal', 'super_admin'], {},
+               { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select"} %>
+</div>
+
+<div class="form-group col-md-6">
+  <%= f.label :role_id, 'Roles' %>
+  <%= f.select :role_ids, roles_for_select, {}, class: 'form-control', 'data-behavior' => "chosen-select",  multiple: true %>
+</div>
+
+<%= javascript_include_tag 'users/form' %>

@@ -1,7 +1,7 @@
 # First point of contact for every non API request to the application
 # Author:: Raj
 class ApplicationController < ActionController::Base
-
+  include ExceptionHelper
   include PermissionsHelper
   include ApplicationControllerHelper
   #include DeviceControllerHelper

@@ -1,0 +1,77 @@
+<div class="container-div page-body">
+  <div>
+    <div class="col-xs-12" align="center">
+      <h3> Plastic Scraps</h3>
+    </div>
+    <div class="col-xs-12">
+      <div class="col-md-2 col-md-offset-2">
+        <h3>
+          <%= link_to admin_plastic_scraps_path, class: "btn btn-blue" do %>
+            Back
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class="table table-bordered table-striped table-hover table-data table-overview display" >
+      <thead>
+      <tr>
+        <th class="col-xs-1">Id</th>
+        <th class="col-xs-1">Party</th>
+        <th class="col-xs-1">Type</th>
+        <th class="col-xs-1">Rate</th>
+        <th class="col-xs-1">Weight</th>
+        <th class="col-xs-1">Delhi Weight</th>
+        <th class="col-xs-1">Bhiwani Weight</th>
+        <th class="col-xs-1">Bags Quantity</th>
+        <th class="col-xs-2">Bardana</th>
+        <th class="col-xs-1">Labour</th>
+        <th class="col-xs-1">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% PlasticScrap.all.each do |plastic_scrap| %>
+        <tr>
+          <td><%= plastic_scrap.id%></td>
+          <%if plastic_scrap.id == @plastic_scrap.id %>
+            <%= form_for @plastic_scrap, url: admin_plastic_scrap_path do |f| %>
+              <td><%= f.select :party_id, Party.all.pluck(:name, :id), {include_blank: "--Party--"},
+                               { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%></td>
+              <td><%= f.select :type_id, Type.all.pluck(:name, :id), {include_blank: "--Type--"},
+                               { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%></td>
+              <td><%= f.text_field :rate, class: 'form-control input feedr-main-input', required: true %></td>
+              <td><%= f.text_field :weight, class: 'form-control input feedr-main-input', required: true %></td>
+              <td><%= f.text_field :delhi_weight, class: 'form-control input feedr-main-input', required: true %></td>
+              <td><%= f.text_field :bhiwani_weight, class: 'form-control input feedr-main-input', required: true %></td>
+              <td><%= f.text_field :bags_quantity, class: 'form-control input feedr-main-input', required: true %></td>
+              <td><%= f.text_field :bardana, class: 'form-control input feedr-main-input', required: true %></td>
+              <td><%= f.text_field :labour, class: 'form-control input feedr-main-input', required: true %></td>
+              <td>
+                <%= f.submit "Update", class: 'btn btn-green' %>
+              </td>
+            <% end %>
+          <% else %>
+            <td><%= plastic_scrap.id%></td>
+            <td><%= Party.find_by(:id => plastic_scrap.party_id).name %></td>
+            <td><%= Type.find_by(:id => plastic_scrap.party_id).name %></td>
+            <td><%= plastic_scrap.rate%></td>
+            <td><%= plastic_scrap.weight%></td>
+            <td><%= plastic_scrap.delhi_weight%></td>
+            <td><%= plastic_scrap.bhiwani_weight%></td>
+            <td><%= plastic_scrap.bags_quantity%></td>
+            <td><%= plastic_scrap.bardana%></td>
+            <td><%= plastic_scrap.labour%></td>
+            <td>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="page_links ppl">
+      <%#= will_paginate @locations%>
+    </div>
+  </div>
+</div>

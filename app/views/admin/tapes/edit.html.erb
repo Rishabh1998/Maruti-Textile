@@ -1,0 +1,61 @@
+<div class="container-div page-body">
+  <div>
+    <div class="col-xs-12" align="center">
+      <h3> Tapes</h3>
+    </div>
+    <div class="col-xs-12">
+      <div class="col-md-2 col-md-offset-2">
+        <h3>
+          <%= link_to admin_tapes_path, class: "btn btn-blue" do %>
+            Back
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class="table table-bordered table-striped table-hover table-data table-overview display" >
+      <thead>
+      <tr>
+        <th class="col-xs-1">Id</th>
+        <th class="col-xs-1">Party</th>
+        <th class="col-xs-1">Type Name</th>
+        <th class="col-xs-3">Quantity</th>
+        <th class="col-xs-2">Rate</th>
+        <th class="col-xs-2">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% Tape.all.each do |tape| %>
+        <tr>
+          <td><%= tape.id%></td>
+          <%if tape.id == @tape.id %>
+            <%= form_for @tape, url: admin_tape_path do |f| %>
+              <td><%= f.select :party_id, Party.all.pluck(:name, :id), {include_blank: "--Party--"},
+                               { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%></td>
+              <td><%= f.text_field :type_name, class: 'form-control input feedr-main-input', required: true %></td>
+              <td><%= f.text_field :quantity, class: 'form-control input feedr-main-input', required: true %></td>
+              <td><%= f.text_field :rate, class: 'form-control input feedr-main-input', required: true %></td>
+              <td>
+                <%= f.submit "Update", class: 'btn btn-green' %>
+              </td>
+            <% end %>
+          <% else %>
+            <td><%= tape.id%></td>
+            <td><%= Party.find_by(:id => tape.party_id).name %></td>
+            <td><%= tape.type_name%></td>
+            <td><%= tape.quantity%></td>
+            <td><%= tape.rate%></td>
+            <td>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="page_links ppl">
+      <%#= will_paginate @locations%>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="container-div page-body">
+  <div>
+    <div class="col-xs-12" align="center">
+      <h3>Tapes</h3>
+    </div>
+    <div class="col-xs-12 no-left-pad">
+      <div class="col-md-2 col-md-offset-2 ">
+        <h3>
+          <%= link_to new_admin_tape_path, class: "btn btn-green" do %>
+            Add
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class="table table-bordered table-striped feedr-main-tabl" >
+      <thead>
+      <tr>
+        <th class="col-xs-1">Id</th>
+        <th class="col-xs-1">Party</th>
+        <th class="col-xs-1">Type Name</th>
+        <th class="col-xs-3">Quantity</th>
+        <th class="col-xs-2">Rate</th>
+        <th class="col-xs-2">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @tapes.each do |tape| %>
+        <tr>
+          <td><%= tape.id%></td>
+          <td><%= Party.find_by(:id => tape.party_id).name %></td>
+          <td><%= tape.type_name%></td>
+          <td><%= tape.quantity%></td>
+          <td><%= tape.rate%></td>
+          <td>
+            <div>
+              <div class="col-xs-4">
+                <%= link_to edit_admin_tape_path(tape), class: "btn btn-sm btn-blue" do %>
+                  Edit
+                <% end %>
+              </div>
+
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="page_links ppl">
+      <%= will_paginate @tapes%>
+    </div>
+  </div>
+</div>
+
+<script>
+    $('#document').change(function(){
+        $('#upload_form').submit()
+    });
+</script>

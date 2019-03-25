@@ -54,5 +54,22 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :parties do
+    end
+
+    resources :colors do
+    end
+
+    resources :types do
+    end
+
+    resources :plastic_scraps
+    resources :fillers
+    resources :bobins
+    resources :gittis
+    resources :tapes
+    resources :thellies
+    resources :daanas
+
   end
 end

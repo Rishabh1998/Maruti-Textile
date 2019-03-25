@@ -28,7 +28,10 @@ class User < ApplicationRecord
     if password.present?
       self.salt = BCrypt::Engine.generate_salt
       self.password= BCrypt::Engine.hash_secret(password, salt)
+    else
+      self.password = password_was
     end
+
   end
 
   def clear_password

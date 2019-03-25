@@ -1,0 +1,60 @@
+<div class="container-div page-body">
+  <div>
+    <div class="col-xs-12" align="center">
+      <h3> Thellies</h3>
+    </div>
+    <div class="col-xs-12 no-left-pad">
+      <div class="col-md-2 col-md-offset-2">
+        <h3>
+          <%= link_to admin_thellies_path, class: "btn btn-blue" do %>
+             Back
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class="table table-bordered table-striped" >
+      <thead>
+      <tr>
+        <th class="col-xs-1">Id</th>
+        <th class="col-xs-1">Party</th>
+        <th class="col-xs-1">Weight</th>
+        <th class="col-xs-3">Quantity</th>
+        <th class="col-xs-2">Rate</th>
+        <th class="col-xs-2">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td></td>
+        <%= form_for @thelly, url: admin_thellies_path do |f| %>
+          <td><%= f.select :party_id, Party.all.pluck(:name, :id), {include_blank: "--Party--"},
+                           { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%></td>
+          <td><%= f.text_field :weight, class: 'form-control input feedr-main-input', required: true %></td>
+          <td><%= f.text_field :quantity, class: 'form-control input feedr-main-input', required: true %></td>
+          <td><%= f.text_field :rate, class: 'form-control input feedr-main-input', required: true %></td>
+          <td>
+            <%= f.submit "Save", class: 'btn btn-green' %>
+          </td>
+        <% end %>
+      </tr>
+      <% Thelly.all.each do |thelly| %>
+        <tr>
+          <td><%= thelly.id%></td>
+          <td><%= Party.find_by(:id => thelly.party_id).name %></td>
+          <td><%= thelly.weight%></td>
+          <td><%= thelly.quantity%></td>
+          <td><%= thelly.rate%></td>
+          <td>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="page_links ppl">
+      <%#= will_paginate @locations%>
+    </div>
+  </div>
+</div>

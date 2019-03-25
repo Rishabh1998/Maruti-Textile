@@ -1,0 +1,65 @@
+<div class="container-div page-body">
+  <div>
+    <div class="col-xs-12" align="center">
+      <h3>Parties</h3>
+    </div>
+    <div class="col-xs-12 no-left-pad">
+      <div class="col-md-2 col-md-offset-2 ">
+        <h3>
+          <%= link_to new_admin_party_path, class: "btn btn-green" do %>
+            Add
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class="table table-bordered table-striped feedr-main-tabl" >
+      <thead>
+      <tr>
+        <th class="col-xs-1">Id</th>
+        <th class="col-xs-2">Name</th>
+        <th class="col-xs-2">Address</th>
+        <th class="col-xs-2">Mobile Number</th>
+        <th class="col-xs-2">Gstin</th>
+        <th class="col-xs-1">Rate</th>
+        <th class="col-xs-1">Weight</th>
+        <th class="col-xs-1">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @parties.each do |party| %>
+        <tr>
+          <td><%= party.id%></td>
+          <td><%= party.name%></td>
+          <td><%= party.address%></td>
+          <td><%= party.mobile_number%></td>
+          <td><%= party.gstin%></td>
+          <td><%= party.rate%></td>
+          <td><%= party.weight%></td>
+          <td>
+            <div>
+              <div class="col-xs-4">
+                <%= link_to edit_admin_party_path(party), class: "btn btn-sm btn-blue" do %>
+                  Edit
+                <% end %>
+              </div>
+
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="page_links ppl">
+      <%= will_paginate @parties%>
+    </div>
+  </div>
+</div>
+
+<script>
+    $('#document').change(function(){
+        $('#upload_form').submit()
+    });
+</script>

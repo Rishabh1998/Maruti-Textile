@@ -1,0 +1,58 @@
+<div class="container-div page-body">
+  <div>
+    <div class="col-xs-12" align="center">
+      <h3> Types</h3>
+    </div>
+    <div class="col-xs-12">
+      <div class="col-md-2 col-md-offset-2">
+        <h3>
+          <%= link_to admin_types_path, class: "btn btn-blue" do %>
+            Back
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class="table table-bordered table-striped table-hover table-data table-overview display" >
+      <thead>
+      <tr>
+        <th class="col-xs-1">Id</th>
+        <th class="col-xs-1">Color</th>
+        <th class="col-xs-4">Name</th>
+        <th class="col-xs-5">Description</th>
+        <th class="col-xs-1">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% Type.all.each do |type| %>
+        <tr>
+          <td><%= type.id%></td>
+          <%if type.id == @type.id %>
+            <%= form_for @type, url: admin_type_path do |f| %>
+              <td><%= f.select :color_id, Color.all.pluck(:name, :id), {include_blank: "--Color--"},
+                               { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%></td>
+              <td><%= f.text_field :name, class: 'form-control feedr-main-input input', required: true %></td>
+              <td><%= f.text_field :description, class: 'form-control input feedr-main-input', required: true %></td>
+              <td>
+                <%= f.submit "Update", class: 'btn btn-green' %>
+              </td>
+            <% end %>
+          <% else %>
+            <td><%= type.id%></td>
+            <td><%= Color.find_by(:id => type.color_id).name %></td>
+            <td><%= type.name%></td>
+            <td><%= type.description%></td>
+            <td>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="page_links ppl">
+      <%#= will_paginate @locations%>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="container-div page-body">
+  <div>
+    <div class="col-xs-12" align="center">
+      <h3>Colors</h3>
+    </div>
+    <div class="col-xs-12">
+      <div class="col-md-2 col-md-offset-2">
+        <h3>
+          <%= link_to admin_colors_path, class: "btn btn-blue" do %>
+            Back
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class="table table-bordered table-striped table-hover table-data table-overview display" >
+      <thead>
+      <tr>
+        <th class="col-xs-1">Id</th>
+        <th class="col-xs-4">Name</th>
+        <th class="col-xs-5">Description</th>
+        <th class="col-xs-2">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% Color.all.each do |color| %>
+        <tr>
+          <td><%= color.id%></td>
+          <%if color.id == @color.id %>
+            <%= form_for @color, url: admin_color_path do |f| %>
+              <td><%= f.text_field :name, class: 'form-control feedr-main-input input', required: true %></td>
+              <td><%= f.text_field :description, class: 'form-control input feedr-main-input', required: true %></td>
+              <td>
+                <%= f.submit "Update", class: 'btn btn-green' %>
+              </td>
+            <% end %>
+          <% else %>
+            <td><%= color.id%></td>
+            <td><%= color.name%></td>
+            <td><%= color.description%></td>
+            <td>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="page_links ppl">
+      <%#= will_paginate @locations%>
+    </div>
+  </div>
+</div>

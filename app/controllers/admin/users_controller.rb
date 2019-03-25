@@ -22,7 +22,7 @@ class Admin::UsersController < ApiController
     @user = User.new(user_params)
     if @user.save
       set_flash_notification :success, :create, entity: 'Admin'
-      redirect_to users_path
+      redirect_to admin_users_path
     else
       set_instant_flash_notification :danger, :default, {:message => @user.errors.messages[:base][0]}
       render :new
@@ -41,7 +41,7 @@ class Admin::UsersController < ApiController
     @user = current_user
 
     if @user.update(permitted_update_profile_params)
-      redirect_to edit_profile_users_path
+      redirect_to edit_profile_admin_users_path
     else
       set_instant_flash_notification :danger, :default
       render :edit_profile
@@ -51,8 +51,8 @@ class Admin::UsersController < ApiController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      set_flash_notification :success, :update, entity: ''
-      redirect_to users_path
+      set_flash_notification :success, :update, entity: 'Admin'
+      redirect_to admin_users_path
     else
       set_instant_flash_notification :danger, :default, {:message => @user.errors.messages[:base][0]}
       render :edit
@@ -62,18 +62,18 @@ class Admin::UsersController < ApiController
   def deactivate
     @user.deactivate
     set_flash_notification :notice, :update, entity: 'User'
-    redirect_to users_path
+    redirect_to admin_users_path
   end
 
   def activate
     @user.activate
     set_flash_notification :notice, :update, entity: 'User'
-    redirect_to users_path
+    redirect_to admin_users_path
   end
 
   private
   def user_params
-    params.require(:admin_user).permit(:name, :password, :mobile_number, :email, :status, :user_type, role_ids: [])
+    params.require(:user).permit(:name, :password, :mobile_number, :email, :status, :user_type, role_ids: [])
   end
 
   def permitted_update_profile_params
@@ -85,7 +85,7 @@ class Admin::UsersController < ApiController
 
     if current_user.admin? && (@user.admin? || @user.super_admin?)
       set_flash_notification :danger, :unauthorized
-      redirect_to users_path
+      redirect_to admin_users_path
     end
   end
 
@@ -111,4 +111,3 @@ class Admin::UsersController < ApiController
     end
   end
 end
-

@@ -1,0 +1,65 @@
+<div class="container-div page-body">
+  <div>
+    <div class="col-xs-12" align="center">
+      <h3> Parties</h3>
+    </div>
+    <div class="col-xs-12 no-left-pad">
+      <div class="col-md-2 col-md-offset-2">
+        <h3>
+          <%= link_to admin_parties_path, class: "btn btn-blue" do %>
+             Back
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class="table table-bordered table-striped" >
+      <thead>
+      <tr>
+        <th class="col-xs-1">Id</th>
+        <th class="col-xs-2">Name</th>
+        <th class="col-xs-2">Address</th>
+        <th class="col-xs-2">Mobile Number</th>
+        <th class="col-xs-2">Gstin</th>
+        <th class="col-xs-1">Rate</th>
+        <th class="col-xs-1">Weight</th>
+        <th class="col-xs-1">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td></td>
+        <%= form_for @party, url: admin_parties_path do |f| %>
+          <td><%= f.text_field :name, class: 'form-control input feedr-main-input', required: true %></td>
+          <td><%= f.text_field :address, class: 'form-control input feedr-main-input', required: true %></td>
+          <td><%= f.text_field :mobile_number, class: 'form-control input feedr-main-input', required: true %></td>
+          <td><%= f.text_field :gstin, class: 'form-control input feedr-main-input', required: true %></td>
+          <td><%= f.number_field :rate, class: 'form-control input feedr-main-input', required: true, :step => 0.01 %></td>
+          <td><%= f.number_field :weight, class: 'form-control input feedr-main-input', required: true, :step => 0.01 %></td>
+          <td>
+            <%= f.submit "Save", class: 'btn btn-green' %>
+          </td>
+        <% end %>
+      </tr>
+      <% Party.all.each do |party| %>
+        <tr>
+          <td><%= party.id%></td>
+          <td><%= party.name%></td>
+          <td><%= party.address%></td>
+          <td><%= party.mobile_number%></td>
+          <td><%= party.gstin%></td>
+          <td><%= party.rate%></td>
+          <td><%= party.weight%></td>
+          <td>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="page_links ppl">
+      <%#= will_paginate @locations%>
+    </div>
+  </div>
+</div>
