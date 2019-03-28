@@ -19,9 +19,10 @@
       <thead>
       <tr>
         <th class="col-xs-1">Id</th>
-        <th class="col-xs-5">Party</th>
+        <th class="col-xs-3">Party</th>
         <th class="col-xs-2">Quantity</th>
         <th class="col-xs-2">Rate</th>
+        <th class="col-xs-2">Date</th>
         <th class="col-xs-2">Action</th>
       </tr>
       </thead>
@@ -35,6 +36,7 @@
                                { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%></td>
               <td><%= f.text_field :quantity, class: 'form-control input feedr-main-input', required: true %></td>
               <td><%= f.text_field :rate, class: 'form-control input feedr-main-input', required: true %></td>
+              <td><%= gitti.created_at.strftime("%d/%m/%Y")%></td>
               <td>
                 <%= f.submit "Update", class: 'btn btn-green' %>
               </td>
@@ -43,6 +45,7 @@
             <td><%= Party.find_by(:id => gitti.party_id).name %></td>
             <td><%= gitti.quantity%></td>
             <td><%= gitti.rate%></td>
+            <td><%= gitti.created_at.strftime("%d/%m/%Y")%></td>
             <td>
             </td>
           <% end %>

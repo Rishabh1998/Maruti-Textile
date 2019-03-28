@@ -36,6 +36,12 @@ class Admin::ThelliesController < ApiController
     end
   end
 
+  def destroy
+    @bobin = Thelly.find(params[:id])
+    @bobin.delete
+    redirect_to admin_thellies_path
+  end
+
   def upload_thelly_image
     UploadToS3Service.new(params[:document], params[:id], {extension: 'jpg', public_read: true, upload_folder: "thellies"}).update_file
     set_flash_notification :success, :update, entity: 'Thelly'

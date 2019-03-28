@@ -36,6 +36,12 @@ class Admin::ColorsController < ApiController
     end
   end
 
+  def destroy
+    @bobin = Color.find(params[:id])
+    @bobin.delete
+    redirect_to admin_colors_path
+  end
+
   def upload_color_image
     UploadToS3Service.new(params[:document], params[:id], {extension: 'jpg', public_read: true, upload_folder: "colors"}).update_file
     set_flash_notification :success, :update, entity: 'Color'

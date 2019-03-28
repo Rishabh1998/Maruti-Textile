@@ -21,8 +21,9 @@
         <th class="col-xs-1">Id</th>
         <th class="col-xs-3">Party</th>
         <th class="col-xs-2">Weight</th>
-        <th class="col-xs-2">Quantity</th>
-        <th class="col-xs-2">Rate</th>
+        <th class="col-xs-1">Quantity</th>
+        <th class="col-xs-1">Rate</th>
+        <th class="col-xs-2">Date</th>
         <th class="col-xs-2">Action</th>
       </tr>
       </thead>
@@ -35,6 +36,7 @@
           <td><%= f.text_field :weight, class: 'form-control input feedr-main-input', required: true %></td>
           <td><%= f.text_field :quantity, class: 'form-control input feedr-main-input', required: true %></td>
           <td><%= f.text_field :rate, class: 'form-control input feedr-main-input', required: true %></td>
+          <td></td>
           <td>
             <%= f.submit "Save", class: 'btn btn-green' %>
           </td>
@@ -47,6 +49,7 @@
           <td><%= thelly.weight%></td>
           <td><%= thelly.quantity%></td>
           <td><%= thelly.rate%></td>
+          <td><%= thelly.created_at.strftime("%d/%m/%Y")%></td>
           <td>
           </td>
         </tr>

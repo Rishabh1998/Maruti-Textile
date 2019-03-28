@@ -19,10 +19,11 @@
       <thead>
       <tr>
         <th class="col-xs-1">Id</th>
-        <th class="col-xs-3">Party</th>
-        <th class="col-xs-3">Type</th>
+        <th class="col-xs-2">Party</th>
+        <th class="col-xs-2">Type</th>
         <th class="col-xs-1">Quantity</th>
         <th class="col-xs-2">Rate</th>
+        <th class="col-xs-2">Date</th>
         <th class="col-xs-2">Action</th>
       </tr>
       </thead>
@@ -34,19 +35,22 @@
             <%= form_for @daana, url: admin_daana_path do |f| %>
               <td><%= f.select :party_id, Party.all.pluck(:name, :id), {include_blank: "--Party--"},
                                { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%></td>
-              <td><%= f.select :type_id, Type.all.pluck(:name, :id), {include_blank: "--Type--"},
+              <td><%= f.select :type_id, Type.includes(:color).collect { |t| [ "#{t.name} | #{t.color.name}" , t.id] }, {include_blank: "--Type--"},
                                { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%></td>
               <td><%= f.text_field :quantity, class: 'form-control input feedr-main-input', required: true %></td>
               <td><%= f.text_field :rate, class: 'form-control input feedr-main-input', required: true %></td>
+              <td><%= daana.created_at.strftime("%d/%m/%Y")%></td>
               <td>
                 <%= f.submit "Update", class: 'btn btn-green' %>
               </td>
             <% end %>
           <% else %>
             <td><%= Party.find_by(:id => daana.party_id).name %></td>
-            <td><%= Type.find_by(:id => daana.type_id).name %></td>
+            <% type_name = Type.includes(:color).find_by(:id => daana.type_id) %>
+            <td><%= type_name.name + " | " + type_name.color.name  %></td>
             <td><%= daana.quantity%></td>
             <td><%= daana.rate%></td>
+            <td><%= daana.created_at.strftime("%d/%m/%Y")%></td>
             <td>
             </td>
           <% end %>

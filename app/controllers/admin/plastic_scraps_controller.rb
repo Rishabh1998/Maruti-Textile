@@ -36,6 +36,12 @@ class Admin::PlasticScrapsController < ApiController
     end
   end
 
+  def destroy
+    @bobin = PlasticScrap.find(params[:id])
+    @bobin.delete
+    redirect_to admin_plastic_scraps_path
+  end
+
   def upload_plastic_scrap_image
     UploadToS3Service.new(params[:document], params[:id], {extension: 'jpg', public_read: true, upload_folder: "plastic_scraps"}).update_file
     set_flash_notification :success, :update, entity: 'Plastic_scrap'

@@ -36,6 +36,12 @@ class Admin::PartiesController < ApiController
     end
   end
 
+  def destroy
+    @bobin = Party.find(params[:id])
+    @bobin.delete
+    redirect_to admin_parties_path
+  end
+
   def upload_party_image
     UploadToS3Service.new(params[:document], params[:id], {extension: 'jpg', public_read: true, upload_folder: "parties"}).update_file
     set_flash_notification :success, :update, entity: 'Party'

@@ -36,6 +36,12 @@ class Admin::TypesController < ApiController
     end
   end
 
+  def destroy
+    @bobin = Type.find(params[:id])
+    @bobin.delete
+    redirect_to admin_types_path
+  end
+
   def upload_type_image
     UploadToS3Service.new(params[:document], params[:id], {extension: 'jpg', public_read: true, upload_folder: "types"}).update_file
     set_flash_notification :success, :update, entity: 'Type'

@@ -7,7 +7,7 @@
       <div class="col-md-2 col-md-offset-2 ">
         <h3>
           <%= link_to new_admin_type_path, class: "btn btn-green" do %>
-            Add
+            Add New Type
           <% end %>
         </h3>
       </div>
@@ -15,14 +15,33 @@
   </div>
 
   <div class="col-xs-8 col-xs-offset-2">
+    <%= search_form_for(@q,url: admin_types_path, id: 'types_search_form') do |f| %>
+
+      <div class="col-xs-2 pt20">
+        <%=f.select :color_id_eq, Color.all.pluck(:name, :id), {include_blank: "--Color--"},
+                    { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select"}%>
+      </div>
+
+      <div class="col-xs-4 pt20">
+        <%=f.text_field :name_cont, class: 'form-control feedr-main-input', placeholder: 'Type Name'%>
+      </div>
+
+      <div class="col-xs-2 pt20" align="right">
+        <%=f.submit 'Search', class: 'form-control btn-green'%>
+      </div>
+    <%end%>
+  </div>
+
+  <div class="col-xs-8 col-xs-offset-2 top-margin-3">
     <table class="table table-bordered table-striped feedr-main-tabl" >
       <thead>
       <tr>
         <th class="col-xs-1">Id</th>
         <th class="col-xs-2">Color</th>
-        <th class="col-xs-4">Name</th>
-        <th class="col-xs-4">Description</th>
-        <th class="col-xs-1">Action</th>
+        <th class="col-xs-2">Name</th>
+        <th class="col-xs-3">Description</th>
+        <th class="col-xs-2">Date</th>
+        <th class="col-xs-2">Action</th>
       </tr>
       </thead>
       <tbody>
@@ -32,14 +51,18 @@
           <td><%= Color.find_by(:id => type.color_id).name %></td>
           <td><%= type.name%></td>
           <td><%= type.description%></td>
+          <td><%= type.created_at.strftime("%d/%m/%Y")%></td>
           <td>
             <div>
               <div class="col-xs-4">
-                <%= link_to edit_admin_type_path(type), class: "btn btn-sm btn-blue" do %>
+                <%= link_to edit_admin_type_path(type), class: "btn btn-primary" do %>
                   Edit
                 <% end %>
               </div>
+              <div class="col-xs-4">
+                <%= link_to 'Delete', admin_type_path(type), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
 
+              </div>
             </div>
           </td>
         </tr>

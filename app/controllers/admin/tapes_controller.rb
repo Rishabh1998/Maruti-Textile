@@ -36,6 +36,12 @@ class Admin::TapesController < ApiController
     end
   end
 
+  def destroy
+    @bobin = Tape.find(params[:id])
+    @bobin.delete
+    redirect_to admin_tapes_path
+  end
+
   def upload_tape_image
     UploadToS3Service.new(params[:document], params[:id], {extension: 'jpg', public_read: true, upload_folder: "tapes"}).update_file
     set_flash_notification :success, :update, entity: 'Tape'

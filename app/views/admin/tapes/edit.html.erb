@@ -20,9 +20,10 @@
       <tr>
         <th class="col-xs-1">Id</th>
         <th class="col-xs-3">Party</th>
-        <th class="col-xs-3">Type Name</th>
+        <th class="col-xs-2">Type Name</th>
         <th class="col-xs-1">Quantity</th>
-        <th class="col-xs-2">Rate</th>
+        <th class="col-xs-1">Rate</th>
+        <th class="col-xs-2">Date</th>
         <th class="col-xs-2">Action</th>
       </tr>
       </thead>
@@ -37,6 +38,7 @@
               <td><%= f.text_field :type_name, class: 'form-control input feedr-main-input', required: true %></td>
               <td><%= f.text_field :quantity, class: 'form-control input feedr-main-input', required: true %></td>
               <td><%= f.text_field :rate, class: 'form-control input feedr-main-input', required: true %></td>
+              <td><%= tape.created_at.strftime("%d/%m/%Y")%></td>
               <td>
                 <%= f.submit "Update", class: 'btn btn-green' %>
               </td>
@@ -46,6 +48,7 @@
             <td><%= tape.type_name%></td>
             <td><%= tape.quantity%></td>
             <td><%= tape.rate%></td>
+            <td><%= tape.created_at.strftime("%d/%m/%Y")%></td>
             <td>
             </td>
           <% end %>

@@ -36,6 +36,12 @@ class Admin::DaanasController < ApiController
     end
   end
 
+  def destroy
+    @bobin = Daana.find(params[:id])
+    @bobin.delete
+    redirect_to admin_daanas_path
+  end
+
   def upload_daana_image
     UploadToS3Service.new(params[:document], params[:id], {extension: 'jpg', public_read: true, upload_folder: "daanas"}).update_file
     set_flash_notification :success, :update, entity: 'Daana'

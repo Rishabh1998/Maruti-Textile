@@ -19,8 +19,9 @@
       <thead>
       <tr>
         <th class="col-xs-1">Id</th>
-        <th class="col-xs-4">Name</th>
-        <th class="col-xs-5">Description</th>
+        <th class="col-xs-3">Name</th>
+        <th class="col-xs-4">Description</th>
+        <th class="col-xs-2">Date</th>
         <th class="col-xs-2">Action</th>
       </tr>
       </thead>
@@ -31,7 +32,8 @@
           <%if color.id == @color.id %>
             <%= form_for @color, url: admin_color_path do |f| %>
               <td><%= f.text_field :name, class: 'form-control feedr-main-input input', required: true %></td>
-              <td><%= f.text_field :description, class: 'form-control input feedr-main-input', required: true %></td>
+              <td><%= f.text_field :description, class: 'form-control input feedr-main-input' %></td>
+              <td><%= color.created_at.strftime("%d/%m/%Y")%></td>
               <td>
                 <%= f.submit "Update", class: 'btn btn-green' %>
               </td>
@@ -39,6 +41,7 @@
           <% else %>
             <td><%= color.name%></td>
             <td><%= color.description%></td>
+            <td><%= color.created_at.strftime("%d/%m/%Y")%></td>
             <td>
             </td>
           <% end %>

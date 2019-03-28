@@ -3,9 +3,9 @@
     <div class="col-xs-12" align="center">
       <u><h2> Plastic Scrap</h2></u>
     </div>
-    <div class="col-xs-10 no-left-pad">
-      <div class="col-md-2 col-md-offset-1 ">
-        <h3>&nbsp
+    <div class="col-xs-12 no-left-pad">
+      <div class="col-md-2 col-md-offset">
+        <h3>
           <%= link_to admin_plastic_scraps_path, class: "btn btn-blue" do %>
              Back
           <% end %>
@@ -14,11 +14,11 @@
     </div>
   </div>
 
-  <div class="col-xs-10 col-xs-offset-1">
+  <div class="col-xs-12 col-xs-offset">
     <table class="table table-bordered table-striped feedr-main-tabl" >
       <thead>
       <tr>
-        <th class="col-xs-1">Id</th>
+        <th class="col-xs-0">Id</th>
         <th class="col-xs-2">Party</th>
         <th class="col-xs-1">Type</th>
         <th class="col-xs-1">Rate</th>
@@ -28,7 +28,8 @@
         <th class="col-xs-1">Bags Quantity</th>
         <th class="col-xs-1">Bardana</th>
         <th class="col-xs-1">Labour</th>
-        <th class="col-xs-1">Action</th>
+        <th class="col-xs-1">Date</th>
+        <th class="col-xs-2">Action</th>
       </tr>
       </thead>
       <tbody>
@@ -37,7 +38,7 @@
         <%= form_for @plastic_scrap, url: admin_plastic_scraps_path do |f| %>
           <td><%= f.select :party_id, Party.all.pluck(:name, :id), {include_blank: "--Party--"},
                            { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%></td>
-          <td><%= f.select :type_id, Type.all.pluck(:name, :id), {include_blank: "--Type--"},
+          <td><%= f.select :type_id, Type.includes(:color).collect { |t| [ "#{t.name} | #{t.color.name}" , t.id] }, {include_blank: "--Type--"},
                            { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%></td>
           <td><%= f.text_field :rate, class: 'form-control input feedr-main-input', required: true %></td>
           <td><%= f.text_field :weight, class: 'form-control input feedr-main-input', required: true %></td>
@@ -46,6 +47,7 @@
           <td><%= f.text_field :bags_quantity, class: 'form-control input feedr-main-input', required: true %></td>
           <td><%= f.text_field :bardana, class: 'form-control input feedr-main-input', required: true %></td>
           <td><%= f.select(:labour,["Outside Labour","Factory Labour"] , :class => 'form-control') %></td>
+          <td></td>
           <td>
             <%= f.submit "Save", class: 'btn btn-green' %>
           </td>
@@ -55,15 +57,16 @@
         <tr>
           <td><%= plastic_scrap.id%></td>
           <td><%= Party.find_by(:id => plastic_scrap.party_id).name %></td>
-          <td><%= Type.find_by(:id => plastic_scrap.party_id).name %></td>
+          <% type_name = Type.includes(:color).find_by(:id => plastic_scrap.type_id) %>
+          <td><%= type_name.name + " | " + type_name.color.name  %></td>
           <td><%= plastic_scrap.rate%></td>
           <td><%= plastic_scrap.weight%></td>
           <td><%= plastic_scrap.delhi_weight%></td>
           <td><%= plastic_scrap.bhiwani_weight%></td>
           <td><%= plastic_scrap.bags_quantity%></td>
           <td><%= plastic_scrap.bardana%></td>
-          <td><%= plastic_scrap.labour %></td>
-
+          <td><%= plastic_scrap.labour%></td>
+          <td><%= plastic_scrap.created_at.strftime("%d/%m/%Y")%></td>
           <td>
           </td>
         </tr>

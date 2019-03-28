@@ -36,6 +36,12 @@ class Admin::BobinsController < ApiController
     end
   end
 
+  def destroy
+    @bobin = Bobin.find(params[:id])
+    @bobin.delete
+    redirect_to admin_bobins_path
+  end
+
   def upload_bobin_image
     UploadToS3Service.new(params[:document], params[:id], {extension: 'jpg', public_read: true, upload_folder: "bobins"}).update_file
     set_flash_notification :success, :update, entity: 'Bobin'

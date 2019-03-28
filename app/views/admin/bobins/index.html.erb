@@ -7,21 +7,37 @@
       <div class="col-md-2 col-md-offset-2 ">
         <h3>
           <%= link_to new_admin_bobin_path, class: "btn btn-green" do %>
-            Add
+            Add Bobin
           <% end %>
         </h3>
       </div>
     </div>
   </div>
 
+
   <div class="col-xs-8 col-xs-offset-2">
+    <%= search_form_for(@q,url: admin_bobins_path, id: 'bobin_search_form') do |f| %>
+
+      <div class="col-xs-5 pt20">
+
+        <%=f.select :party_id_eq, Party.all.pluck(:name, :id), {include_blank: "--Party--"},
+                    { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select"}%>
+      </div>
+      <div class="col-xs-2 pt20" align="right">
+        <%=f.submit 'Search', class: 'form-control btn-green'%>
+      </div>
+    <%end%>
+  </div>
+
+  <div class="col-xs-8 col-xs-offset-2 top-margin-3">
     <table class="table table-bordered table-striped feedr-main-tabl" >
       <thead>
       <tr>
         <th class="col-xs-1">Id</th>
-        <th class="col-xs-5">Party</th>
+        <th class="col-xs-3">Party</th>
         <th class="col-xs-2">Quantity</th>
         <th class="col-xs-2">Rate</th>
+        <th class="col-xs-2">Date</th>
         <th class="col-xs-2">Action</th>
       </tr>
       </thead>
@@ -32,12 +48,17 @@
           <td><%= Party.find_by(:id => bobin.party_id).name %></td>
           <td><%= bobin.quantity%></td>
           <td><%= bobin.rate%></td>
+          <td><%= bobin.created_at.strftime("%d/%m/%Y")%></td>
           <td>
             <div>
               <div class="col-xs-4">
-                <%= link_to edit_admin_bobin_path(bobin), class: "btn btn-sm btn-blue" do %>
+                <%= link_to edit_admin_bobin_path(bobin), class: "btn btn-primary" do %>
                   Edit
                 <% end %>
+              </div>
+              <div class="col-xs-4">
+                <%= link_to 'Delete', admin_bobin_path(bobin), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+
               </div>
 
             </div>

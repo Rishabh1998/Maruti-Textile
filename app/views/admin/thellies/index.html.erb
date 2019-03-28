@@ -7,7 +7,7 @@
       <div class="col-md-2 col-md-offset-2 ">
         <h3>
           <%= link_to new_admin_thelly_path, class: "btn btn-green" do %>
-            Add
+            Add New Thelly
           <% end %>
         </h3>
       </div>
@@ -15,14 +15,28 @@
   </div>
 
   <div class="col-xs-8 col-xs-offset-2">
+    <%= search_form_for(@q,url: admin_thellies_path, id: 'thellies_search_form') do |f| %>
+
+      <div class="col-xs-5 pt20">
+        <%=f.select :party_id_eq, Party.all.pluck(:name, :id), {include_blank: "--Party--"},
+                    { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select"}%>
+      </div>
+      <div class="col-xs-2 pt20" align="right">
+        <%=f.submit 'Search', class: 'form-control btn-green'%>
+      </div>
+    <%end%>
+  </div>
+
+  <div class="col-xs-8 col-xs-offset-2 top-margin-3">
     <table class="table table-bordered table-striped feedr-main-tabl" >
       <thead>
       <tr>
         <th class="col-xs-1">Id</th>
         <th class="col-xs-3">Party</th>
         <th class="col-xs-2">Weight</th>
-        <th class="col-xs-2">Quantity</th>
-        <th class="col-xs-2">Rate</th>
+        <th class="col-xs-1">Quantity</th>
+        <th class="col-xs-1">Rate</th>
+        <th class="col-xs-2">Date</th>
         <th class="col-xs-2">Action</th>
       </tr>
       </thead>
@@ -34,14 +48,18 @@
           <td><%= thelly.weight%></td>
           <td><%= thelly.quantity%></td>
           <td><%= thelly.rate%></td>
+          <td><%= thelly.created_at.strftime("%d/%m/%Y")%></td>
           <td>
             <div>
               <div class="col-xs-4">
-                <%= link_to edit_admin_thelly_path(thelly), class: "btn btn-sm btn-blue" do %>
+                <%= link_to edit_admin_thelly_path(thelly), class: "btn btn-primary" do %>
                   Edit
                 <% end %>
               </div>
+              <div class="col-xs-4">
+                <%= link_to 'Delete', admin_thelly_path(thelly), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
 
+              </div>
             </div>
           </td>
         </tr>

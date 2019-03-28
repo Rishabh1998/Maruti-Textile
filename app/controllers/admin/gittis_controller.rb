@@ -36,6 +36,12 @@ class Admin::GittisController < ApiController
     end
   end
 
+  def destroy
+    @bobin = Gitti.find(params[:id])
+    @bobin.delete
+    redirect_to admin_gittis_path
+  end
+
   def upload_gitti_image
     UploadToS3Service.new(params[:document], params[:id], {extension: 'jpg', public_read: true, upload_folder: "gittis"}).update_file
     set_flash_notification :success, :update, entity: 'Gitti'

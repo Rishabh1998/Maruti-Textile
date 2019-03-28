@@ -21,8 +21,9 @@
         <th class="col-xs-1">Id</th>
         <th class="col-xs-3">Party</th>
         <th class="col-xs-2">Color</th>
-        <th class="col-xs-2">Quantity</th>
-        <th class="col-xs-2">Rate</th>
+        <th class="col-xs-1">Quantity</th>
+        <th class="col-xs-1">Rate</th>
+        <th class="col-xs-2">Date</th>
         <th class="col-xs-2">Action</th>
       </tr>
       </thead>
@@ -38,6 +39,7 @@
                                { class: 'feedr-main-select form-control ','data-behavior' => "chosen-select", required: true}%></td>
               <td><%= f.text_field :quantity, class: 'form-control input feedr-main-input', required: true %></td>
               <td><%= f.text_field :rate, class: 'form-control input feedr-main-input', required: true %></td>
+              <td><%= filler.created_at.strftime("%d/%m/%Y")%></td>
               <td>
                 <%= f.submit "Update", class: 'btn btn-green' %>
               </td>
@@ -47,6 +49,7 @@
             <td><%= Color.find_by(:id => filler.color_id).name %></td>
             <td><%= filler.quantity%></td>
             <td><%= filler.rate%></td>
+            <td><%= filler.created_at.strftime("%d/%m/%Y")%></td>
             <td>
             </td>
           <% end %>
